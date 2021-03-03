@@ -62,14 +62,14 @@ server <- function(input, output) {
         
         f <- reactive({
             d() %>%
-                group_by(var = d()[[input$variables]], fill=d()[[input$fill]]) %>% 
-                summarize(total = sum(num)) %>%
+                group_by(Variable = d()[[input$variables]], Fill=d()[[input$fill]]) %>% 
+                summarize(Total = sum(num)) %>%
                 na.omit()
         })
 
         output$SADCplot <- renderPlotly({
-            pt <- ggplot(f(), aes(x=reorder(var, -total), y=total,
-                                  fill=factor(fill)))+
+            pt <- ggplot(f(), aes(x=Variable, y=Total,
+                                  fill=Fill))+
                 geom_bar(stat="identity") +
                 labs(x="Variable", y="Proportion of initiatives",
                      fill="Fill") +
