@@ -80,5 +80,6 @@ server <- function(input, output) {
             ggplotly(pt)
         })
     }
+?reorder
 # Run the application 
 shinyApp(ui = ui, server = server)
